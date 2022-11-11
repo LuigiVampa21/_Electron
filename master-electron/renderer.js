@@ -130,23 +130,74 @@
 
 // ---------------------------------------------------------- SHELL ----------------------------------------------------------------
 
-const { shell } = require("electron");
+// const { shell } = require("electron");
 
-const showSite = e => {
-  shell.openExternal("https://electronjs.org");
-};
+// const showSite = e => {
+//   shell.openExternal("https://electronjs.org");
+// };
 
 const imgPath = `${__dirname}/images/splash.png`;
 
-const showImg = e => {
-  shell.openPath(imgPath);
+// const showImg = e => {
+//   shell.openPath(imgPath);
+// };
+
+// const showFile = e => {
+//   shell.showItemInFolder(imgPath);
+//   console.log("hiiya");
+// };
+
+// const deleteFile = e => {
+//   shell.moveItemToTrash(imgPath);
+// };
+
+// ---------------------------------------------------------- NativeElements ----------------------------------------------------------------
+
+// const { nativeImage, ipcRenderer } = require("electron");
+// const fs = require("fs");
+
+// const splash = nativeImage.createFromPath(imgPath);
+
+// const saveToDesktop = async (data, ext) => {
+//   let desktopPath = await ipcRenderer.invoke("app-path");
+//   fs.writeFile(`${desktopPath}/splash.${ext}`, data, () => {
+//     console.log(desktopPath);
+//   });
+// };
+
+// const toPNG = () => {
+//   let imgPNG = splash.toPNG();
+//   saveToDesktop(imgPNG, "png");
+// };
+
+// const toJPEG = () => {
+//   let imgJPG = splash.toJPEG(100);
+//   saveToDesktop(imgJPG, "jpg");
+// };
+
+// const toTAG = () => {
+//   let size = splash.getSize();
+//   let imgURL = splash
+//     .resize({
+//       width: Math.round(size.width / 4),
+//       height: Math.round(size.height / 4),
+//     })
+//     .toDataURL();
+//   document.getElementById("preview").src = imgURL;
+// };
+
+// ---------------------------------------------------------- CLIPBOARD ----------------------------------------------------------------
+
+const { clipboard } = require("electron");
+
+const txt = clipboard.readText();
+
+const makeUpper = () => {
+  clipboard.writeText(txt.toUpperCase());
 };
 
-const showFile = e => {
-  shell.showItemInFolder(imgPath);
-  console.log("hiiya");
-};
-
-const deleteFile = e => {
-  shell.moveItemToTrash(imgPath);
+const showImage = () => {
+  let img = clipboard.readImage();
+  console.log(img);
+  document.querySelector("#cbImg").src = img.toDataURL();
 };

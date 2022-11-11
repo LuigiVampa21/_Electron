@@ -21,6 +21,10 @@ const windowStateKeeper = require("electron-window-state");
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+ipcMain.handle("app-path", () => {
+  return app.getPath("desktop");
+});
+
 // let tray;
 // let secondaryWindow;
 
