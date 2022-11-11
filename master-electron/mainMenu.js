@@ -13,6 +13,7 @@ let mainMenu = Menu.buildFromTemplate([
     label: "Ionic",
     submenu: [
       { label: "menu1" },
+      { role: "reload" },
       { label: "menu2", enabled: false },
       {
         label: "menu3",

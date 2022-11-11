@@ -47,9 +47,9 @@ function createWindow() {
     console.log(metricsChanged);
   });
 
-  setInterval(() => {
-    console.log(screen.getCursorScreenPoint());
-  }, 1000);
+  // setInterval(() => {
+  console.log(screen.getCursorScreenPoint());
+  // }, 1000);
 
   // Window State manager
   let mainWindowState = windowStateKeeper({
@@ -204,7 +204,7 @@ function createWindow() {
 
   // ----------------------------------------------------------- OPEN W/ DEVTOOLS -----------------------------------------------------------
 
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   // let cookie = {
   //   url: "https://myappdomain.com",

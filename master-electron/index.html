@@ -18,19 +18,48 @@
   <body style="-webkit-app-region: drag; padding-top: 20px">
     <h1>Hello Electron!</h1>
     <p>Build cross-platform desktop apps with JavaScript, HTML, and CSS</p>
-    <br /><br /><br /><br />
-    <input type="range" style="-webkit-app-region: no-drag" />
-    <a target="_blank" href="https://google.com">Click Here</a>
-    <a download href="splash.png">Download image</a>
-    <br /><br /><br /><br />
-    <progress value="0" max="100" id="progress"></progress>
 
-    <script>
-      window.progress = document.getElementById("progress");
-    </script>
-    <script>
+    <br /><br /><br /><br />
+
+    <!-- -------------------------------------------------- Show Progress Bar ---------------------------------------------------------- -->
+
+    <!-- <input type="range" style="-webkit-app-region: no-drag" />-->
+
+    <!-- <script>
+  window.progress = document.getElementById("progress");
+</script> -->
+
+    <!-- -------------------------------------------------- Open new Window ---------------------------------------------------------- -->
+
+    <!-- <a onclick="newWindow()">Open window</a>
+  <br /><br /><br />
+  <a onclick="closeWindow()">Close window</a>
+  <br /><br /><br />
+  <a onclick="newFont()">New Font window</a>
+  <br /><br /><br />  -->
+
+    <!-- -------------------------------------------------- Download Img ---------------------------------------------------------- -->
+    <!-- 
+      <a download href="splash.png">Download image</a>
+      <br /><br /><br /><br />
+      <progress value="0" max="100" id="progress"></progress> -->
+
+    <!-- <img src="https://placekitten.com/450/300" /> -->
+
+    <!-- -------------------------------------------------- Zoom ---------------------------------------------------------- -->
+    <!-- 
+    <button onclick="zoomIn()">Increase Zoom</button>
+    <button onclick="zoomOut()">Decrease Zoom</button>
+    <button onclick="zoomReset()">Reset Zoom</button> -->
+
+    <!-- -------------------------------------------------- GetSources ---------------------------------------------------------- -->
+
+    <img src="" id="screenShot" />
+    <button id="screenButton">Get Sources</button>
+
+    <script src="./renderer.js">
       // You can also require other files to run in this process
-      require("./renderer.js");
+      // require("./renderer.js");
     </script>
   </body>
 </html>
