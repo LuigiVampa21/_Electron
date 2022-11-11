@@ -41,28 +41,92 @@
 // };
 
 // ---------------------------------------------------------- Sources ----------------------------------------------------------------
-const { desktopCapturer } = require("electron");
+// const { desktopCapturer } = require("electron");
 
-const screenButton = document.getElementById("screenButton");
-const screenShot = document.getElementById("screenShot");
-console.log(screenShot);
+// const screenButton = document.getElementById("screenButton");
+// const screenShot = document.getElementById("screenShot");
+// console.log(screenShot);
 
-screenButton.addEventListener("click", () => {
-  desktopCapturer
-    // .getSources({
-    //   types: ["screen"],
-    //   thumbnailSize: { width: 1200, height: 800 },
-    // })
-    // .then(async sources => {
-    //   console.log(sources);
-    //   screenShot.src = sources[0].thumbnail.toDataURL();
-    // });
-    .getSources({
-      types: ["window"],
-      thumbnailSize: { width: 1200, height: 800 },
-    })
-    .then(async sources => {
-      console.log(sources);
-      screenShot.src = sources[0].thumbnail.toDataURL();
-    });
+// screenButton.addEventListener("click", () => {
+//   desktopCapturer
+//     // .getSources({
+//     //   types: ["screen"],
+//     //   thumbnailSize: { width: 1200, height: 800 },
+//     // })
+//     // .then(async sources => {
+//     //   console.log(sources);
+//     //   screenShot.src = sources[0].thumbnail.toDataURL();
+//     // });
+//     .getSources({
+//       types: ["window"],
+//       thumbnailSize: { width: 1200, height: 800 },
+//     })
+//     .then(async sources => {
+//       console.log(sources);
+//       screenShot.src = sources[0].thumbnail.toDataURL();
+//     });
+// });
+
+// ----------------------------------------------------------IPC MESSAGING ----------------------------------------------------------------
+
+// const { ipcRenderer } = require("electron");
+
+// const talk = document.getElementById("talk");
+
+// talk.addEventListener("click", e => {
+//   ipcRenderer.send("channel1", "Hello channel1");
+// });
+
+// ipcRenderer.on("channel1-response", (e, args) => {
+//   console.log(args);
+// });
+
+// ipcRenderer.on("mailbox", (e, args) => {
+//   console.log(args);
+// });
+
+// ----------------------------------------------------------IPC REMOTE ----------------------------------------------------------------
+
+// const { remote } = require("electron");
+// const { dialog, BrowserWindow } = remote;
+
+// setTimeout(() => {
+//   //   dialog
+//   //     .showMessageBox({
+//       //       message: "Dialog from renderer",
+//       //       buttons: ["One", "Two"],
+//   //     })
+//   //     .then(res => {
+//   //       console.log(res);
+//   //     })
+//   //     .catch(err => console.error(err));
+
+//   let win = new BrowserWindow({
+//     x: 50,
+//     y: 50,
+//     width: 300,
+//     height: 300,
+//   });
+
+//   let mainWindow = remote.getCurrentWindow();
+
+//   setTimeout(() => {
+//     mainWindow.maximize(), 2000;
+//   });
+
+//   win.loadFile("index.html");
+
+//   setTimeout(remote.app.quit, 2000);
+// }, 2000);
+
+// ----------------------------------------------------------IPC REMOTE ----------------------------------------------------------------
+
+const { ipcRenderer } = require("electron");
+
+document.querySelector("#ask").addEventListener("click", e => {
+  ipcRenderer.send("ask-fruit");
+});
+
+ipcRenderer.on("answer-fruit", (e, args) => {
+  console.log(args);
 });
