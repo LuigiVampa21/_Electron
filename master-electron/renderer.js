@@ -119,14 +119,34 @@
 //   setTimeout(remote.app.quit, 2000);
 // }, 2000);
 
-// ----------------------------------------------------------IPC REMOTE ----------------------------------------------------------------
+// ---------------------------------------------------------- INVOKE & HANDLE ----------------------------------------------------------------
 
-const { ipcRenderer } = require("electron");
+// const { ipcRenderer } = require("electron");
 
-document.querySelector("#ask").addEventListener("click", e => {
-  ipcRenderer.send("ask-fruit");
-});
+// document.querySelector("#ask").addEventListener("click", async e => {
+//   const fruit = await ipcRenderer.invoke("ask-fruit");
+//   console.log(fruit);
+// });
 
-ipcRenderer.on("answer-fruit", (e, args) => {
-  console.log(args);
-});
+// ---------------------------------------------------------- SHELL ----------------------------------------------------------------
+
+const { shell } = require("electron");
+
+const showSite = e => {
+  shell.openExternal("https://electronjs.org");
+};
+
+const imgPath = `${__dirname}/images/splash.png`;
+
+const showImg = e => {
+  shell.openPath(imgPath);
+};
+
+const showFile = e => {
+  shell.showItemInFolder(imgPath);
+  console.log("hiiya");
+};
+
+const deleteFile = e => {
+  shell.moveItemToTrash(imgPath);
+};

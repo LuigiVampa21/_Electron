@@ -21,26 +21,6 @@ const windowStateKeeper = require("electron-window-state");
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
-const askFruit = async () => {
-  let fruits = ["Apple", "Orange", "Grape"];
-
-  let choice = await dialog.showMessageBox({
-    message: "Pick a fruit:",
-    buttons: fruits,
-  });
-
-  return fruits[choice.response];
-};
-
-ipcMain.on("ask-fruit", async e => {
-  try {
-    const fruit = await askFruit();
-    await e.reply("answer-fruit", fruit);
-  } catch (err) {
-    console.error(err);
-  }
-});
-
 // let tray;
 // let secondaryWindow;
 
@@ -304,4 +284,33 @@ app.on("activate", () => {
 
 // mainWindow.webContents.on("did-finish-load", e => {
 //   mainWindow.webContents.send("mailbox", "you have mail");
+// });
+
+// ----------------------------------------------------------- Invoke & Handle -------------------------------------------------------------
+
+// const askFruit = async () => {
+//   let fruits = ["Apple", "Orange", "Grape"];
+
+//   let choice = await dialog.showMessageBox({
+//     message: "Pick a fruit:",
+//     buttons: fruits,
+//   });
+
+//   return fruits[choice.response];
+// };
+
+// ipcMain.handle("ask-fruit", e => {
+//   try {
+//     return askFruit();
+//   } catch (err) {
+//     console.error(err);
+//   }
+// });
+
+// ----------------------------------------------------------- Process -------------------------------------------------------------
+
+// mainWindow.webContents.on("crashed", () => {
+//   setTimeout(() => {
+//     mainWindow.reload();
+//   }, 2000);
 // });

@@ -20,8 +20,8 @@
     <p>Build cross-platform desktop apps with JavaScript, HTML, and CSS</p>
 
     <br /><br /><br /><br />
-
-    <button id="ask">Pick a fruit</button>
+    <!-- 
+    <button id="ask">Pick a fruit</button> -->
 
     <!-- <button id="talk">Talk</button> -->
 
@@ -56,10 +56,23 @@
     <button onclick="zoomOut()">Decrease Zoom</button>
     <button onclick="zoomReset()">Reset Zoom</button> -->
 
+    <!-- ----------------------------------------------------------- Process ------------------------------------------------------------- -->
+
+    <!-- 
+    <button onclick="process.crash()">Crash</button>
+    <button onclick="process.hang()">Hang</button> -->
+
     <!-- -------------------------------------------------- GetSources ---------------------------------------------------------- -->
 
-    <img src="" id="screenShot" />
-    <button id="screenButton">Get Sources</button>
+    <!-- <img src="" id="screenShot" />
+      <button id="screenButton">Get Sources</button> -->
+
+    <!-- -------------------------------------------------- Shell ---------------------------------------------------------- -->
+
+    <button onclick="showSite()">Lauch Electron.js Site</button>
+    <button onclick="showImg()">See Image</button>
+    <button onclick="showFile()">See File</button>
+    <button onclick="deleteFile()">Delete File</button>
 
     <script src="./renderer.js">
       // You can also require other files to run in this process
