@@ -89,13 +89,32 @@
       <button onclick="makeUpper()">Make UpperCase</button>
       <button onclick="showImage()">show Image</button> -->
 
-    <!-- -------------------------------------------------- ClipBoard ---------------------------------------------------------- -->
+    <!-- -------------------------------------------------- NETWORK DETECTION ---------------------------------------------------------- -->
 
-    <h1>App is <u id="status"></u></h1>
+    <!-- <h1>App is <u id="status"></u></h1> -->
+
+    <!-- -------------------------------------------------- PRELOAD ---------------------------------------------------------- -->
+
+    <p>
+      NODE version is:
+      <script>
+        document.write(versions.node);
+      </script>
+      ELECTRON version is:
+      <script>
+        document.write(versions.electron);
+      </script>
+    </p>
+
+    <br /><br />
+    <textarea id="content" cols="30" rows="10"></textarea>
+    <br /><br />
+    <button onclick="saveText()">Save</button>
 
     <script src="./renderer.js">
-      // You can also require other files to run in this process
       // require("./renderer.js");
     </script>
+
+    <!-- <script src="./preload.js"></script> -->
   </body>
 </html>

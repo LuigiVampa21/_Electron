@@ -218,15 +218,22 @@ const imgPath = `${__dirname}/images/splash.png`;
 
 // ---------------------------------------------------------- NOTIFICATIONS ----------------------------------------------------------------
 
-const { remote } = require("electron");
+// const { remote } = require("electron");
 
-const self = remote.getCurrentWindow();
+// const self = remote.getCurrentWindow();
 
-setTimeout(() => {
-  const notif = new Notification("", {
-    body: "Some notif",
-  });
-  notif.onclick = () => {
-    if (!self.isVisible()) self.show();
-  };
-}, 2000);
+// setTimeout(() => {
+//   const notif = new Notification("", {
+//     body: "Some notif",
+//   });
+//   notif.onclick = () => {
+//     if (!self.isVisible()) self.show();
+//   };
+// }, 2000);
+
+// ---------------------------------------------------------- PRELOAD ---------------------------------------------------------------
+
+const saveText = () => {
+  const text = document.querySelector("#content").value;
+  writeToFile(text);
+};

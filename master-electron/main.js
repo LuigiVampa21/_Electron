@@ -25,9 +25,9 @@ app.disableHardwareAcceleration();
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
-ipcMain.handle("app-path", () => {
-  return app.getPath("desktop");
-});
+// ipcMain.handle("app-path", () => {
+//   return app.getPath("desktop");
+// });
 
 // let tray;
 // let secondaryWindow;
@@ -38,6 +38,10 @@ function createWindow() {
   let mainWindowState = windowStateKeeper({
     defaultWidth: 1000,
     defaultHeight: 800,
+  });
+
+  ipcMain.handle("app-path", () => {
+    return app.getPath("desktop");
   });
 
   mainWindow = new BrowserWindow({
@@ -58,6 +62,7 @@ function createWindow() {
       contextIsolation: false,
       nodeIntegration: true,
       enableRemoteModule: true,
+      preload: __dirname + "/preload.js",
       // offscreen: true,
     },
   });
@@ -337,3 +342,16 @@ app.on("activate", () => {
 //   );
 //   i++;
 // });
+
+// ----------------------------------------------------------- Set Progress Bar -------------------------------------------------------------
+
+// let progress = 0.01;
+// const progressInterval = setInterval(() => {
+//   mainWindow.setProgressBar(progress);
+//   if (progress <= 1) {
+//     progress += 0.01;
+//   } else {
+//     mainWindow.setProgressBar(-1);
+//     clearInterval(progressInterval);
+//   }
+// }, 100);
