@@ -1,8 +1,15 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 // window State package
 const windowStateKeeper = require("electron-window-state");
+const readItem = require("./readItem");
 
 let mainWindow;
+
+ipcMain.on("new-item", (e, value) => {
+  readItem(value, item => {
+    e.sender.send("new-item-success", item);
+  });
+});
 
 function createWindow() {
   // Window State Config

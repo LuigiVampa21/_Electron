@@ -49,8 +49,9 @@ header {
   flex-grow: 1;
 }
 
-#items {
+main {
   flex-grow: 1;
+  overflow-y: scroll;
 }
 
 #no-items {
@@ -94,4 +95,18 @@ header {
 
 #add-item {
   margin-left: 25px;
+}
+
+.read-item {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  border-bottom: lightgray 2px solid;
+  background: #fafafa;
+  padding: 10px;
+}
+
+.read-item img {
+  width: 20%;
+  margin-right: 25px;
 }
