@@ -7,6 +7,23 @@ const showModal = document.getElementById("show-modal"),
   modal = document.getElementById("modal"),
   addItem = document.getElementById("add-item"),
   itemUrl = document.getElementById("url");
+search = document.getElementById("search");
+
+// Filter with search
+
+search.addEventListener("keyup", e => {
+  Array.from(document.getElementsByClassName("read-item")).forEach(i => {
+    const hasMatch = i.innerText.toLowerCase().includes(search.value);
+    i.style.display = hasMatch ? "flex" : "none";
+  });
+});
+
+// Navigate item selection with up/down arrows
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+    items.changeSelection(e.key);
+  }
+});
 
 // Show modal
 showModal.addEventListener("click", e => {
@@ -48,7 +65,7 @@ addItem.addEventListener("click", e => {
 
 // Listen for new-item-success
 ipcRenderer.on("new-item-success", (e, value) => {
-  items.addItems(value);
+  items.addItems(value, true);
   toggleModalButtons();
 
   // Hide modal and clear value
