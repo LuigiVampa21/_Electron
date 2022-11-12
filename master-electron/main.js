@@ -12,10 +12,14 @@ const {
   ipcMain,
 } = electron;
 
+const fs = require("fs");
+
 const mainMenu = require("./mainMenu");
 const contextMenu = require("./contextMenu");
 const trayMenu = require("./trayMenu");
 const windowStateKeeper = require("electron-window-state");
+
+app.disableHardwareAcceleration();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -46,40 +50,33 @@ function createWindow() {
     // y: primaryDisplay.bounds.y,
     // frame: true,
     // titleBarStyle: "hidden",
+    // show: false,
     webPreferences: {
       // --- !! IMPORTANT !! ---
       // Disable 'contextIsolation' to allow 'nodeIntegration'
       // 'contextIsolation' defaults to "true" as from Electron v12
       contextIsolation: false,
       nodeIntegration: true,
-      enableRemoteModule: false,
+      enableRemoteModule: true,
+      // offscreen: true,
     },
   });
 
   Menu.setApplicationMenu(mainMenu);
 
-  // mainWindow.webContents.on("did-finish-load", async () => {
-  //   try {
-  //     const fruit = await askFruit();
-  //     console.log(fruit);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // });
-
-  mainWindow.webContents.on("context-menu", e => {
+  mainWindow.webContents.on("context-menu", () => {
     contextMenu.popup();
   });
 
   let ses = session.defaultSession;
 
-  electron.powerMonitor.on("resume", e => {
+  electron.powerMonitor.on("resume", () => {
     if (!mainWindow) {
       createWindow();
     }
   });
 
-  electron.powerMonitor.on("suspend", e => {
+  electron.powerMonitor.on("suspend", () => {
     console.log("Save data");
   });
 
@@ -311,10 +308,32 @@ app.on("activate", () => {
 //   }
 // });
 
+// mainWindow.webContents.on("did-finish-load", async () => {
+//   try {
+//     const fruit = await askFruit();
+//     console.log(fruit);
+//   } catch (err) {
+//     console.error(err);
+//   }
+// });
+
 // ----------------------------------------------------------- Process -------------------------------------------------------------
 
 // mainWindow.webContents.on("crashed", () => {
 //   setTimeout(() => {
 //     mainWindow.reload();
 //   }, 2000);
+// });
+
+// ----------------------------------------------------------- Screenshot -------------------------------------------------------------
+
+// mainWindow.webContents.on("paint", (e, dirty, image) => {
+//   let screenshot = image.toPNG();
+//   let i = 1;
+//   fs.writeFile(
+//     app.getPath("desktop") + `/screenshot_${i}.png`,
+//     screenshot,
+//     console.log
+//   );
+//   i++;
 // });

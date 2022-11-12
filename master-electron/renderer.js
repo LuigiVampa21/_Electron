@@ -188,16 +188,45 @@ const imgPath = `${__dirname}/images/splash.png`;
 
 // ---------------------------------------------------------- CLIPBOARD ----------------------------------------------------------------
 
-const { clipboard } = require("electron");
+// const { clipboard } = require("electron");
 
-const txt = clipboard.readText();
+// const txt = clipboard.readText();
 
-const makeUpper = () => {
-  clipboard.writeText(txt.toUpperCase());
-};
+// const makeUpper = () => {
+//   clipboard.writeText(txt.toUpperCase());
+// };
 
-const showImage = () => {
-  let img = clipboard.readImage();
-  console.log(img);
-  document.querySelector("#cbImg").src = img.toDataURL();
-};
+// const showImage = () => {
+//   let img = clipboard.readImage();
+//   console.log(img);
+//   document.querySelector("#cbImg").src = img.toDataURL();
+// };
+
+// ---------------------------------------------------------- NETWORK DETECTION ----------------------------------------------------------------
+
+// const statusNode = (document.querySelector("#status").innerText = "Online");
+
+// // statusNode.innerText = navigator.onLine ? "Online" : "Offline";
+
+// window.addEventListener("online", () => {
+//   statusNode.innerText = "Online";
+// });
+
+// window.addEventListener("offline", () => {
+//   statusNode.innerText = "Offline";
+// });
+
+// ---------------------------------------------------------- NOTIFICATIONS ----------------------------------------------------------------
+
+const { remote } = require("electron");
+
+const self = remote.getCurrentWindow();
+
+setTimeout(() => {
+  const notif = new Notification("", {
+    body: "Some notif",
+  });
+  notif.onclick = () => {
+    if (!self.isVisible()) self.show();
+  };
+}, 2000);
