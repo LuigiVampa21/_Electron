@@ -123,17 +123,17 @@ exports.storage = JSON.parse(localStorage.getItem("readit-items")) || [];
 // Listen for "done" message from reader window
 window.addEventListener("message", e => {
   // Check for correct message
-  console.log("hiiya");
   if (e.data.action === "delete-reader-item") {
-    // Delete item at given index
-    this.delete(e.data.itemIndex);
-
-    // Close the reader window
-    e.source.close();
+    //   // Delete item at given index
+    this.delete(+e.data.itemIndex);
   }
+
+  //   // Close the reader window
+  e.source.close();
+  // }
 });
 
-// Delete item
+// // Delete item
 exports.delete = itemIndex => {
   // Remove item from DOM
   items.removeChild(items.childNodes[itemIndex]);
@@ -179,7 +179,6 @@ exports.save = () => {
 exports.select = e => {
   // Remove currently selected item class
   this.getSelectedItem().node.classList.remove("selected");
-
   // Add to clicked item
   e.currentTarget.classList.add("selected");
 };

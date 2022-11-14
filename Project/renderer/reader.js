@@ -24,21 +24,24 @@ readitClose.onclick = e => {
   window.opener.postMessage(
     {
       action: "delete-reader-item",
-      itemIndex: { index },
+      itemIndex: `{{index}}`,
     },
     "*"
   );
 };
+// readitClose.onclick = () => {
+//   window.opener.postMessage("item-done", "*");
+// };
 
-// readitClose.addEventListener("click", e => {
+// readitClose.onclick = e => {
 //   // Message parent (opener) window
 //   window.opener.postMessage(
 //     {
 //       action: "delete-reader-item",
-//       itemIndex: index,
+//       itemIndex: { index },
 //     },
 //     "*"
 //   );
-// });
+// };
 
 // Append button to body
